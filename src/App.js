@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import MovieListPage from "./components/page/MovieListPage/index";
-import MovieDetailPage from "./components/page/MovieDetail/MovieDetailPage";
+import MovieDetailPage from "./components/page/MovieDetail/index";
 import NotFound from "./components/UI/NotFound";
 
 function App() {
