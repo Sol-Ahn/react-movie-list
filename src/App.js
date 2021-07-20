@@ -8,6 +8,7 @@ function App() {
   return (
     <div>
       <Switch>
+        {/* children이 없을때는 self-closing 태그를 쓰도록 해주세요! <Route></Route> --> <Route /> */}
         <Route exact path="/movie" component={MovieListPage} />
         <Route exact path="/movie/:id" component={MovieDetailPage} />
         <Route component={NotFound} />
