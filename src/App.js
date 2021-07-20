@@ -5,15 +5,16 @@ import MovieDetailPage from "./components/page/MovieDetailPage/index";
 import NotFound from "./components/UI/NotFound";
 
 function App() {
-	return (
-		<div>
-			<Switch>
-				<Route exact path="/" component={MovieListPage}></Route>
-				<Route path="/detail" component={MovieDetailPage}></Route>
-				<Route component={NotFound}></Route>
-			</Switch>
-		</div>
-	);
+  return (
+    <div>
+      <Switch>
+        {/* children이 없을때는 self-closing 태그를 쓰도록 해주세요! <Route></Route> --> <Route /> */}
+        <Route exact path="/movie" component={MovieListPage} />
+        <Route exact path="/movie/:id" component={MovieDetailPage} />
+        <Route component={NotFound} />
+      </Switch>
+    </div>
+  );
 }
 
 export default App;
