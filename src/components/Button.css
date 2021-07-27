@@ -1,0 +1,4 @@
+.button:hover,
+.button:active {
+	background-color: #9575cd;
+}

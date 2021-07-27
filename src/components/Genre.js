@@ -28,15 +28,13 @@ const GenreFilter = () => {
 
 const GenreCheckbox = () => {
 	return (
-		<Checkbox.Group>
-			<Row>
-				{genres.map((genre, index) => (
-					<Col key={index} span={8}>
-						<Checkbox value={genre.key}>{genre.value}</Checkbox>
-					</Col>
-				))}
-			</Row>
-		</Checkbox.Group>
+		<Row>
+			{genres.map((genre, index) => (
+				<Col key={index} span={8}>
+					<Checkbox value={genre.key}>{genre.value}</Checkbox>
+				</Col>
+			))}
+		</Row>
 	);
 };
 

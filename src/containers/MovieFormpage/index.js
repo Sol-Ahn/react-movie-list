@@ -1,19 +1,26 @@
 import React from "react";
-import { Form, Input, InputNumber, Button, Alert } from "antd";
+import { Form, Input, InputNumber, message, Button, Checkbox } from "antd";
 import axios from "axios";
 import { GenreCheckbox } from "../../components/Genre";
 
 const MovieFormPage = () => {
+	const success = () => {
+		message.success("업로드에 성공하였습니다.");
+	};
+
+	const error = () => {
+		message.error("업로드에 실패하였습니다.");
+	};
+
 	const onFinish = (values) => {
 		const submitData = async () => {
 			const req = await axios.post(
 				"https://limitless-sierra-67996.herokuapp.com/v1/movies",
 				values
 			);
-			console.log("Successed:", req);
 			if (req.status === 201)
-				<Alert message="업로드에 성공했습니다." type="success" />;
-			else <Alert message="업로드에 실패했습니다." type="error" />;
+				return <Button onClick={success}>업로드 성공</Button>;
+			else return <Button onClick={error}>업로드 실패</Button>;
 		};
 		submitData();
 	};
@@ -70,7 +77,9 @@ const MovieFormPage = () => {
 				name="categories"
 				rules={[{ required: true, message: "Please select the categories!" }]}
 			>
-				<GenreCheckbox />
+				<Checkbox.Group>
+					<GenreCheckbox />
+				</Checkbox.Group>
 			</Form.Item>
 			<Form.Item
 				label="소개"
