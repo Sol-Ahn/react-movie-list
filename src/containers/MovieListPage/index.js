@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Row, Col, Card, Spin, Image, Button } from "antd";
-import { GenreFilter } from "../../UI/Genre";
+import { GenreFilter } from "../../components/Genre";
 
 const { Meta } = Card;
 const imageFallback =
@@ -62,8 +62,8 @@ const MovieListPage = () => {
 										hoverable
 										cover={
 											<Image
-												width={`100%`}
-												height={`80%`}
+												width={"100%"}
+												height={"80%"}
 												src="error"
 												fallback={imageFallback}
 											>

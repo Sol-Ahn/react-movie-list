@@ -1,17 +1,17 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import MovieListPage from "./components/page/MovieListPage/index";
-import MovieDetailPage from "./components/page/MovieDetailPage/index";
-import MovieFormPage from "./components/page/MovieFormpage/index";
-import NotFound from "./components/UI/NotFound";
-import StyledHeader from "./components/UI/Header";
-import StyledContent from "./components/UI/Content";
+import MovieListPage from "./containers/MovieListPage/index";
+import MovieDetailPage from "./containers/MovieDetailPage/index";
+import MovieFormPage from "./containers/MovieFormpage/index";
+import NotFound from "./components/NotFound";
+import StyledHeader from "./components/Header";
+import StyledContent from "./components/Content";
 import "antd/dist/antd.css";
 import { Layout } from "antd";
 
 const App = () => {
 	return (
-		<Layout>
+		<Layout className="layout">
 			<StyledHeader />
 			<StyledContent>
 				<Switch>

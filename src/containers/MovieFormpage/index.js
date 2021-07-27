@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input, InputNumber, Button, Alert } from "antd";
 import axios from "axios";
-import { GenreCheckbox } from "../../UI/Genre";
+import { GenreCheckbox } from "../../components/Genre";
 
 const MovieFormPage = () => {
 	const onFinish = (values) => {
