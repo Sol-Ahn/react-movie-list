@@ -1,19 +1,11 @@
 import React from "react";
-import {
-	Form,
-	Input,
-	InputNumber,
-	Button,
-	Checkbox,
-	Row,
-	Col,
-	Alert,
-} from "antd";
+import { Form, Input, InputNumber, Button, Alert } from "antd";
 import axios from "axios";
+import { GenreCheckbox } from "../../UI/Genre";
 
 const MovieFormPage = () => {
 	const onFinish = (values) => {
-		const sendData = async () => {
+		const submitData = async () => {
 			const req = await axios.post(
 				"https://limitless-sierra-67996.herokuapp.com/v1/movies",
 				values
@@ -23,7 +15,7 @@ const MovieFormPage = () => {
 				<Alert message="업로드에 성공했습니다." type="success" />;
 			else <Alert message="업로드에 실패했습니다." type="error" />;
 		};
-		sendData();
+		submitData();
 	};
 
 	const onFinishFailed = (errorInfo) => {
@@ -78,34 +70,7 @@ const MovieFormPage = () => {
 				name="categories"
 				rules={[{ required: true, message: "Please select the categories!" }]}
 			>
-				<Checkbox.Group>
-					<Row>
-						<Col span={8}>
-							<Checkbox value="horror">공포</Checkbox>
-						</Col>
-						<Col span={8}>
-							<Checkbox value="drama">드라마</Checkbox>
-						</Col>
-						<Col span={8}>
-							<Checkbox value="sf">SF</Checkbox>
-						</Col>
-						<Col span={8}>
-							<Checkbox value="thriller">스릴러</Checkbox>
-						</Col>
-						<Col span={8}>
-							<Checkbox value="action">액션</Checkbox>
-						</Col>
-						<Col span={8}>
-							<Checkbox value="docu">다큐멘터리</Checkbox>
-						</Col>
-						<Col span={8}>
-							<Checkbox value="romance">로맨스</Checkbox>
-						</Col>
-						<Col span={8}>
-							<Checkbox value="anime">애니메이션</Checkbox>
-						</Col>
-					</Row>
-				</Checkbox.Group>
+				<GenreCheckbox />
 			</Form.Item>
 			<Form.Item
 				label="소개"

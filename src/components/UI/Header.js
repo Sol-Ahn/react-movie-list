@@ -1,11 +1,23 @@
 import styled from "styled-components";
-import "antd/dist/antd.css";
+import { Link } from "react-router-dom";
 import { Layout } from "antd";
+import "antd/dist/antd.css";
+import "../../App.css";
 
 const { Header } = Layout;
 
-const StyledHeader = styled(Header)`
+const HeaderUI = styled(Header)`
 	background-color: #b0bec5;
 `;
 
-export default StyledHeader;
+const styledHeader = () => {
+	return (
+		<HeaderUI>
+			<Link to="/">
+				<span className="logo">My Movies</span>
+			</Link>
+		</HeaderUI>
+	);
+};
+
+export default styledHeader;
