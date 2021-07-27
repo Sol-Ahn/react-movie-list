@@ -8,7 +8,7 @@ const { Meta } = Card;
 
 const MovieListPage = () => {
 	const [movies, setMovies] = useState([]);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		// axios
@@ -23,7 +23,6 @@ const MovieListPage = () => {
 
 		const fetchData = async () => {
 			try {
-				setLoading(true);
 				const res = await axios.get(
 					"https://my-json-server.typicode.com/ruizhen88/demo/movies"
 				);

@@ -4,13 +4,12 @@ import { Row, Col, Spin, Image } from "antd";
 
 const MovieDetailPage = (props) => {
 	const [movie, setMovie] = useState({});
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const movieId = props.match.params.id;
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				setLoading(true);
 				const res = await axios.get(
 					`https://my-json-server.typicode.com/ruizhen88/demo/movies/${movieId}`
 				);
@@ -40,9 +39,9 @@ const MovieDetailPage = (props) => {
 						<p>{movie.director}</p>
 						<strong>장르</strong>
 						<p>
-							{/* {movie.categories.map((category) => (
-									<span key={Math.random()}>{category} </span>
-								))} */}
+							{movie.categories.map((category) => (
+								<span key={Math.random()}>{category} </span>
+							))}
 						</p>
 					</Col>
 					<Col>
