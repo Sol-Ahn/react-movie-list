@@ -10,19 +10,19 @@ import "antd/dist/antd.css";
 import { Layout } from "antd";
 
 const App = () => {
-	return (
-		<Layout className="layout">
-			<StyledHeader />
-			<StyledContent>
-				<Switch>
-					<Route exact path="/" component={MovieListPage}></Route>
-					<Route path="/detail/:id" component={MovieDetailPage}></Route>
-					<Route path="/form" component={MovieFormPage}></Route>
-					<Route component={NotFound}></Route>
-				</Switch>
-			</StyledContent>
-		</Layout>
-	);
+  return (
+    <Layout className="layout">
+      <StyledHeader />
+      <StyledContent>
+        <Switch>
+          <Route exact path="/" component={MovieListPage} />
+          <Route path="/detail/:id" component={MovieDetailPage} exact />
+          <Route path="/detail/:id/edit" component={MovieFormPage} exact />
+          <Route component={NotFound} />
+        </Switch>
+      </StyledContent>
+    </Layout>
+  );
 };
 
 export default App;
