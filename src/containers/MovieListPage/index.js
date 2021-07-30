@@ -14,17 +14,16 @@ const imageFallback =
 const MovieListPage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://limitless-sierra-67996.herokuapp.com/v1/movies",
-          { params: { page } }
+          `https://limitless-sierra-67996.herokuapp.com/v1/movies?page=${page}`
         );
-        console.log(res);
+        console.log("res", res);
         setMovies(res.data.results);
         setTotal(res.data.totalResults);
         setLoading(false);

@@ -8,6 +8,7 @@ import StyledHeader from "./components/Header";
 import StyledContent from "./components/Content";
 import "antd/dist/antd.css";
 import { Layout } from "antd";
+import MovieEditPage from "./containers/MovieEditPage";
 
 const App = () => {
   return (
@@ -16,8 +17,9 @@ const App = () => {
       <StyledContent>
         <Switch>
           <Route exact path="/" component={MovieListPage} />
-          <Route path="/detail/:id" component={MovieDetailPage} exact />
-          <Route path="/detail/:id/edit" component={MovieFormPage} exact />
+          <Route exact path="/detail/:id" component={MovieDetailPage} />
+          <Route exact path="/detail/:id/edit" component={MovieFormPage} />
+          <Route path="/form" component={MovieFormPage} />
           <Route component={NotFound} />
         </Switch>
       </StyledContent>

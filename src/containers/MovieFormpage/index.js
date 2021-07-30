@@ -8,11 +8,10 @@ const MovieFormPage = () => {
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(true);
   const { id: movieId } = useParams();
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
+        const res = await axios.patch(
           `https://limitless-sierra-67996.herokuapp.com/v1/movies/${movieId}`
         );
         setMovie(res.data);
@@ -23,7 +22,7 @@ const MovieFormPage = () => {
     };
     fetchData();
   }, [movieId]);
-
+  console.log("movie", movie);
   const success = () => {
     message.success("업로드에 성공하였습니다.");
   };
@@ -48,7 +47,7 @@ const MovieFormPage = () => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-  if (loading) return <></>;
+  if (loading) return <>loading</>;
   return (
     <Form
       name="movieForm"
@@ -58,9 +57,9 @@ const MovieFormPage = () => {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
+        initialValue={movie.title}
         label="영화 제목"
         name="title"
-        initialValue={movie?.title}
         rules={[{ required: true, message: "Please input the title!" }]}
       >
         <Input />
