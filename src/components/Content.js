@@ -4,8 +4,8 @@ import { Layout } from "antd";
 const { Content } = Layout;
 
 const StyledContent = styled(Content)`
+	width: 70vw;
 	padding-top: 5%;
-	max-width: 80%;
 	margin: 0 auto;
 `;
 
