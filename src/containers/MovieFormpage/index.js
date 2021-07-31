@@ -31,70 +31,9 @@ const MovieFormPage = () => {
 		submitData();
 	};
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-  if (loading) return <>loading</>;
-  return (
-    <Form
-      name="movieForm"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        initialValue={movie.title}
-        label="영화 제목"
-        name="title"
-        rules={[{ required: true, message: "Please input the title!" }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        label="감독"
-        name="director"
-        rules={[{ required: true, message: "Please input the director!" }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        label="이미지"
-        name="imageUrl"
-        rules={[{ required: false, message: "Please input the image-url!" }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        label="개봉 연도"
-        name="year"
-        rules={[{ required: true, message: "Please input the year!" }]}
-      >
-        <InputNumber />
-      </Form.Item>
-      <Form.Item
-        label="별점"
-        name="rating"
-        rules={[{ required: true, message: "Please input the rating!" }]}
-      >
-        <InputNumber />
-      </Form.Item>
-      <Form.Item
-        label="장르"
-        name="categories"
-        rules={[{ required: true, message: "Please select the categories!" }]}
-      >
-        <Checkbox.Group>
-          <GenreCheckbox />
-        </Checkbox.Group>
-      </Form.Item>
-      <Form.Item
-        label="소개"
-        name="summary"
-        rules={[{ required: true, message: "Please input the summary!" }]}
-      >
-        <Input />
-      </Form.Item>
+	const onFinishFailed = (errorInfo) => {
+		console.log("Failed:", errorInfo);
+	};
 
 	return (
 		<StyledForm
