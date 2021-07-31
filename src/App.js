@@ -4,24 +4,25 @@ import MovieListPage from "./containers/MovieListPage/index";
 import MovieDetailPage from "./containers/MovieDetailPage/index";
 import MovieFormPage from "./containers/MovieFormpage/index";
 import NotFound from "./components/NotFound";
+import StyledLayout from "./components/Layout";
 import StyledHeader from "./components/Header";
 import StyledContent from "./components/Content";
 import "antd/dist/antd.css";
-import { Layout } from "antd";
 
 const App = () => {
 	return (
-		<Layout className="layout">
+		<StyledLayout>
 			<StyledHeader />
 			<StyledContent>
 				<Switch>
 					<Route exact path="/" component={MovieListPage}></Route>
-					<Route path="/detail/:id" component={MovieDetailPage}></Route>
-					<Route path="/form" component={MovieFormPage}></Route>
+					<Route exact path="/detail/:id" component={MovieDetailPage}></Route>
+					<Route path="/detail/:id/edit" component={MovieFormPage}></Route>
+					<Route exact path="/form" component={MovieFormPage}></Route>
 					<Route component={NotFound}></Route>
 				</Switch>
 			</StyledContent>
-		</Layout>
+		</StyledLayout>
 	);
 };
 

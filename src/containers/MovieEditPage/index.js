@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import { Form, Input, InputNumber, message, Button, Checkbox } from "antd";
+import React from "react";
+import { Form, Input, InputNumber, Button, Checkbox } from "antd";
 import axios from "axios";
 import { GenreCheckbox } from "../../components/Genre";
 
-const MovieFormPage = () => {
+const MovieEditPage = () => {
 	const onFinish = (values) => {
 		const submitData = async () => {
 			const req = await axios.post(
 				"https://limitless-sierra-67996.herokuapp.com/v1/movies",
 				values
 			);
+			console.log(req);
 		};
 		submitData();
 	};
@@ -80,10 +81,11 @@ const MovieFormPage = () => {
 
 			<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
 				<Button type="primary" htmlType="submit">
-					등록하기
+					수정하기
 				</Button>
 			</Form.Item>
 		</Form>
 	);
 };
-export default MovieFormPage;
+
+export default MovieEditPage;
