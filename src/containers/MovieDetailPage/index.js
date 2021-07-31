@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Row, Col, Spin, Image } from "antd";
+import { Row, Col, Spin, Image, message } from "antd";
 import StyledButton from "../../components/Button";
 import { StarFilled } from "@ant-design/icons";
 import "../../basic.css";
@@ -13,6 +13,14 @@ const MovieDetailPage = (props) => {
 	const [movie, setMovie] = useState({});
 	const [loading, setLoading] = useState(true);
 	const movieId = props.match.params.id;
+
+	const success = () => {
+		message.success("삭제 성공");
+	};
+
+	const error = () => {
+		message.error("삭제 실패");
+	};
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -29,17 +37,34 @@ const MovieDetailPage = (props) => {
 		fetchData();
 	}, [movieId]);
 
+	const deleteData = async () => {
+		try {
+			const req = await axios.delete(
+				`https://limitless-sierra-67996.herokuapp.com/v1/movies/${movieId}`
+			);
+			console.log(req);
+			if (req.status === 204) {
+				success();
+			} else error();
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<>
 			{loading ? (
 				<Spin size="large" />
 			) : (
 				<>
-					<Row justify="end">
+					<Row justify="end" gutter={8}>
 						<Col className="margin-bottom-small">
 							<StyledButton>
 								<Link to={`/detail/${movieId}/edit`}>영화 수정하기</Link>
 							</StyledButton>
+						</Col>
+						<Col>
+							<StyledButton onClick={deleteData}>영화 삭제하기</StyledButton>
 						</Col>
 					</Row>
 					<Row gutter={32}>

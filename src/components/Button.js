@@ -8,7 +8,7 @@ const ButtonUI = styled(Button)`
 
 const StyledButton = (props) => {
 	return (
-		<ButtonUI className="button" type="primary">
+		<ButtonUI className="button" type="primary" htmlType="submit">
 			{props.children}
 		</ButtonUI>
 	);
