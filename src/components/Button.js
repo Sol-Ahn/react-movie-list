@@ -3,6 +3,7 @@ import { Button } from "antd";
 
 const ButtonUI = styled(Button)`
 	background-color: #4527a0;
+	width: 100%;
 	border: none;
 `;
 
