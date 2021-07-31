@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Button } from "antd";
-import "./Button.css";
 
 const ButtonUI = styled(Button)`
 	background-color: #4527a0;

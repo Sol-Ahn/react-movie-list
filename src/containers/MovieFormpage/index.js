@@ -1,15 +1,32 @@
 import React, { useState } from "react";
-import { Form, Input, InputNumber, message, Button, Checkbox } from "antd";
+import { Redirect } from "react-router-dom";
+import { Form, InputNumber, Checkbox, message, Button } from "antd";
 import axios from "axios";
+import { StyledForm, StyledInput } from "../../components/Form";
 import { GenreCheckbox } from "../../components/Genre";
+// import StyledButton from "../../components/Button";
 
 const MovieFormPage = () => {
+	const [status, setStatus] = useState(false);
+
+	const success = () => {
+		message.success("등록 성공");
+	};
+
+	const error = () => {
+		message.error("등록 실패");
+	};
+
 	const onFinish = (values) => {
 		const submitData = async () => {
 			const req = await axios.post(
 				"https://limitless-sierra-67996.herokuapp.com/v1/movies",
 				values
 			);
+			if (req.status === 201) {
+				success();
+				setStatus(true);
+			} else error();
 		};
 		submitData();
 	};
@@ -19,33 +36,34 @@ const MovieFormPage = () => {
 	};
 
 	return (
-		<Form
+		<StyledForm
 			name="movieForm"
 			labelCol={{ span: 8 }}
 			wrapperCol={{ span: 16 }}
 			onFinish={onFinish}
 			onFinishFailed={onFinishFailed}
 		>
+			{status ? <Redirect to="/" /> : ""}
 			<Form.Item
 				label="영화 제목"
 				name="title"
 				rules={[{ required: true, message: "Please input the title!" }]}
 			>
-				<Input />
+				<StyledInput />
 			</Form.Item>
 			<Form.Item
 				label="감독"
 				name="director"
 				rules={[{ required: true, message: "Please input the director!" }]}
 			>
-				<Input />
+				<StyledInput />
 			</Form.Item>
 			<Form.Item
 				label="이미지"
 				name="imageUrl"
 				rules={[{ required: false, message: "Please input the image-url!" }]}
 			>
-				<Input />
+				<StyledInput />
 			</Form.Item>
 			<Form.Item
 				label="개봉 연도"
@@ -75,15 +93,14 @@ const MovieFormPage = () => {
 				name="summary"
 				rules={[{ required: true, message: "Please input the summary!" }]}
 			>
-				<Input />
+				<StyledInput />
 			</Form.Item>
-
 			<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
 				<Button type="primary" htmlType="submit">
 					등록하기
 				</Button>
 			</Form.Item>
-		</Form>
+		</StyledForm>
 	);
 };
 export default MovieFormPage;
