@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Form, Input, InputNumber, Button, Checkbox, Spin } from "antd";
+import { useParams, Redirect } from "react-router-dom";
+import { Form, Input, InputNumber, Checkbox, Spin, message } from "antd";
 import axios from "axios";
 import { GenreCheckbox } from "../../components/Genre";
+import StyledButton from "../../components/Button";
 
-const MovieEditPage = () => {
+const MovieEditPage = (props) => {
 	const [movie, setMovie] = useState({});
 	const [loading, setLoading] = useState(true);
 	const { id: movieId } = useParams();
 
+	const [status, setStatus] = useState(false);
+
+	const success = () => {
+		message.success("수정 성공");
+	};
+
+	const error = () => {
+		message.error("수정 실패");
+	};
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -26,11 +36,16 @@ const MovieEditPage = () => {
 
 	const onFinish = (values) => {
 		const submitData = async () => {
-			const req = await axios.put(
+			const req = await axios.patch(
 				`https://limitless-sierra-67996.herokuapp.com/v1/movies/${movieId}`,
 				values
 			);
 			console.log(req);
+
+			if (req.status === 200) {
+				success();
+				setStatus(true);
+			} else error();
 		};
 		submitData();
 	};
@@ -49,6 +64,7 @@ const MovieEditPage = () => {
 			onFinish={onFinish}
 			onFinishFailed={onFinishFailed}
 		>
+			{status ? <Redirect to="/" /> : ""}
 			<Form.Item
 				initialValue={movie.title}
 				label="영화 제목"
@@ -107,9 +123,9 @@ const MovieEditPage = () => {
 				<Input />
 			</Form.Item>
 			<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-				<Button type="primary" htmlType="submit">
+				<StyledButton type={props.type} htmlType={props.htmlType}>
 					수정하기
-				</Button>
+				</StyledButton>
 			</Form.Item>
 		</Form>
 	);

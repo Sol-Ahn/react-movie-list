@@ -5,7 +5,7 @@ const { Content } = Layout;
 
 const StyledContent = styled(Content)`
 	width: 70vw;
-	padding-top: 5%;
+	padding: 4%;
 	margin: 0 auto;
 `;
 

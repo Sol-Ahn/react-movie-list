@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Row, Col, Card, Spin, Image, Input } from "antd";
+import { Row, Col, Card, Spin, Image, Input, Pagination } from "antd";
 import { GenreFilter } from "../../components/Genre";
 import StyledButton from "../../components/Button";
 
@@ -14,6 +14,8 @@ const imageFallback =
 const MovieListPage = () => {
 	const [movies, setMovies] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [total, setTotal] = useState(0);
+	const [page, setPage] = useState(1);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -21,14 +23,16 @@ const MovieListPage = () => {
 				const res = await axios.get(
 					"https://limitless-sierra-67996.herokuapp.com/v1/movies"
 				);
+				console.log(res);
 				setMovies(res.data.results);
+				setTotal(res.data.totalResults);
 				setLoading(false);
 			} catch (err) {
 				console.log(err);
 			}
 		};
 		fetchData();
-	}, []);
+	}, [page]);
 
 	return (
 		<>
@@ -36,20 +40,20 @@ const MovieListPage = () => {
 				<Spin size="large" />
 			) : (
 				<>
-					<Row style={{ position: "relative", marginBottom: "7%" }}>
+					<Row justify="space-between" className="margin-bottom-medium">
 						<Col span={2}>
 							<GenreFilter />
 						</Col>
 						<Col span={10}>
 							<Search placeholder="제목" />
 						</Col>
-						<Col style={{ position: "absolute", top: 0, right: 0 }}>
+						<Col span={4}>
 							<StyledButton>
 								<Link to="/form">새 영화 등록하기</Link>
 							</StyledButton>
 						</Col>
 					</Row>
-					<Row gutter={[48, 24]}>
+					<Row gutter={[48, 24]} className="margin-bottom-medium">
 						{movies.map((movie) => (
 							<Col key={movie.id} span={8}>
 								<Link to={`/detail/${movie.id}`}>
@@ -77,6 +81,14 @@ const MovieListPage = () => {
 								</Link>
 							</Col>
 						))}
+					</Row>
+					<Row justify="center">
+						<Pagination
+							total={total}
+							pageSize={10}
+							current={page}
+							onChange={(page) => setPage(page)}
+						/>
 					</Row>
 				</>
 			)}

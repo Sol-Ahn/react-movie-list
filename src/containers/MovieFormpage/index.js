@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Form, InputNumber, Checkbox, message, Button } from "antd";
+import { Form, InputNumber, Checkbox, message } from "antd";
 import axios from "axios";
 import { StyledForm, StyledInput } from "../../components/Form";
 import { GenreCheckbox } from "../../components/Genre";
+import StyledButton from "../../components/Button";
 // import StyledButton from "../../components/Button";
 
-const MovieFormPage = () => {
+const MovieFormPage = (props) => {
 	const [status, setStatus] = useState(false);
 
 	const success = () => {
@@ -96,9 +97,9 @@ const MovieFormPage = () => {
 				<StyledInput />
 			</Form.Item>
 			<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-				<Button type="primary" htmlType="submit">
+				<StyledButton type={props.type} htmlType={props.htmlType}>
 					등록하기
-				</Button>
+				</StyledButton>
 			</Form.Item>
 		</StyledForm>
 	);
