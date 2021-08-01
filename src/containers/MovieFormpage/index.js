@@ -19,7 +19,7 @@ const MovieFormPage = (props) => {
   };
 
   const onFinish = (values) => {
-    // onFinish 안에서 바로 작업을 수행하지 않고 submitData라는 함수를 만든 이유가 있나요?
+    // 3. onFinish 안에서 바로 작업을 수행하지 않고 submitData라는 함수를 만든 이유가 있나요?
     const submitData = async () => {
       const req = await axios.post(
         "https://limitless-sierra-67996.herokuapp.com/v1/movies",
@@ -45,6 +45,7 @@ const MovieFormPage = (props) => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
+      {/* 4. */}
       {/* status 라는 state를 관리할 필요 없이 더 단순하게 submitData()에서 history.push로 바로 처리할 수 있어요! */}
       {/* 사용법: https://reactrouter.com/web/api/Hooks/usehistory */}
       {/* <Redirect /> 의 use case 참고: https://reactrouter.com/web/api/Redirect */}

@@ -3,6 +3,7 @@ import { Row, Col, Select, Checkbox } from "antd";
 
 const { Option } = Select;
 
+// 1.
 // 이 컴포넌트는 장르에만 use case가 제한되어서 범용적으로 재사용 가능한 비쥬얼 컴포넌트를 모아놓은 /components 의 취지에 맞지 않아 보여요.
 // 예를 들어 생김새가 같은 필터나 체크박스더라도 장르가 아니면 쓸 수 없으니 비효율적이에요.
 // genres를 따로 constants.js에서 관리해주기만 하면 form에서 바로 Select나 Checkbox를 사용해도 될거 같아요!

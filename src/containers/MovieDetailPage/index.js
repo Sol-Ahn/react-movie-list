@@ -4,7 +4,7 @@ import axios from "axios";
 import { Row, Col, Spin, Image, message } from "antd";
 import StyledButton from "../../components/Button";
 import { StarFilled } from "@ant-design/icons";
-// 불가피할때를 제외하고는 한가지 스타일링 방법으로 통일해주세요! 해야 한다면 전역적으로 App에서 import 해주는게 좋아요
+// 2. 불가피할때를 제외하고는 한가지 스타일링 방법으로 통일해주세요! 해야 한다면 전역적으로 App에서 import 해주는게 좋아요
 import "../../basic.css";
 
 const imageFallback =
