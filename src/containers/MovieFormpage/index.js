@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { Form, InputNumber, Checkbox, message } from "antd";
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { Row, Col, Form, InputNumber, Checkbox, message } from "antd";
 import axios from "axios";
 import { StyledForm, StyledInput } from "../../components/Form";
-import { GenreCheckbox } from "../../components/Genre";
 import StyledButton from "../../components/Button";
-// import StyledButton from "../../components/Button";
+import { genres } from "../../constants";
 
 const MovieFormPage = (props) => {
-	const [status, setStatus] = useState(false);
+	let history = useHistory();
 
 	const success = () => {
 		message.success("등록 성공");
@@ -26,7 +25,7 @@ const MovieFormPage = (props) => {
 			);
 			if (req.status === 201) {
 				success();
-				setStatus(true);
+				history.push("/");
 			} else error();
 		};
 		submitData();
@@ -44,7 +43,6 @@ const MovieFormPage = (props) => {
 			onFinish={onFinish}
 			onFinishFailed={onFinishFailed}
 		>
-			{status ? <Redirect to="/" /> : ""}
 			<Form.Item
 				label="영화 제목"
 				name="title"
@@ -86,7 +84,13 @@ const MovieFormPage = (props) => {
 				rules={[{ required: true, message: "Please select the categories!" }]}
 			>
 				<Checkbox.Group>
-					<GenreCheckbox />
+					<Row>
+						{genres.map((genre, index) => (
+							<Col key={index} span={8}>
+								<Checkbox value={genre.label}>{genre.value}</Checkbox>
+							</Col>
+						))}
+					</Row>
 				</Checkbox.Group>
 			</Form.Item>
 			<Form.Item
@@ -97,7 +101,7 @@ const MovieFormPage = (props) => {
 				<StyledInput />
 			</Form.Item>
 			<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-				<StyledButton type={props.type} htmlType={props.htmlType}>
+				<StyledButton type="primary" htmlType="submit">
 					등록하기
 				</StyledButton>
 			</Form.Item>

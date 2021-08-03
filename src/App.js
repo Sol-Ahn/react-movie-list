@@ -9,6 +9,7 @@ import StyledLayout from "./components/Layout";
 import StyledHeader from "./components/Header";
 import StyledContent from "./components/Content";
 import "antd/dist/antd.css";
+import "./basic.css";
 
 const App = () => {
 	return (

@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Redirect } from "react-router-dom";
-import { Form, Input, InputNumber, Checkbox, Spin, message } from "antd";
 import axios from "axios";
-import { GenreCheckbox } from "../../components/Genre";
+import {
+	Row,
+	Col,
+	Form,
+	Input,
+	InputNumber,
+	Checkbox,
+	Spin,
+	message,
+} from "antd";
+import { genres } from "../../constants";
 import StyledButton from "../../components/Button";
 
 const MovieEditPage = (props) => {
@@ -111,7 +120,13 @@ const MovieEditPage = (props) => {
 				rules={[{ required: true, message: "Please select the categories!" }]}
 			>
 				<Checkbox.Group>
-					<GenreCheckbox />
+					<Row>
+						{genres.map((genre, index) => (
+							<Col key={index} span={8}>
+								<Checkbox value={genre.label}>{genre.value}</Checkbox>
+							</Col>
+						))}
+					</Row>
 				</Checkbox.Group>
 			</Form.Item>
 			<Form.Item
@@ -123,7 +138,7 @@ const MovieEditPage = (props) => {
 				<Input />
 			</Form.Item>
 			<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-				<StyledButton type={props.type} htmlType={props.htmlType}>
+				<StyledButton type="primary" htmlType="submit">
 					수정하기
 				</StyledButton>
 			</Form.Item>
