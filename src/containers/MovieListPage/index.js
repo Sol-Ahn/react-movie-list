@@ -35,6 +35,20 @@ const MovieListPage = () => {
 		fetchData();
 	}, [page]);
 
+	// const genreFilterHandler = async () => {
+	// 	try {
+	// 		const res = await axios.get(
+	// 			"https://limitless-sierra-67996.herokuapp.com/v1/movies",
+	// 			{ params: { categories: [] } }
+	// 		);
+	// 		setMovies(res.data.results);
+	// 		setTotal(res.data.totalResults);
+	// 		setLoading(false);
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 	}
+	// };
+
 	return (
 		<>
 			{loading ? (
@@ -80,9 +94,17 @@ const MovieListPage = () => {
 										<Meta title={<h3>{`${movie.title} (${movie.year})`}</h3>} />
 										<p>{movie.director}</p>
 										<p>
-											{movie.categories.map((category, index) => (
-												<span key={index}>{category} </span>
-											))}
+											{movie.categories.map((category, index) => {
+												return <span key={index}>{category} </span>;
+											})}
+											{/* Q. 백엔드에는 장르의 value가 영어로 전달되지만 화면에는 장르를 한글로 보여주고 싶어서 아래와 같은 로직을 작성하였는데 value값을 읽을 수 없다는 에러가 발생합니다. 
+                      어느 부분에서 잘못된 것인지 모르겠습니다.. */}
+											{/* {movie.categories.map((category, index) => {
+												const genreName = genres.find(
+													(genre) => genre.label === category
+												);
+												return <span key={index}>{genreName.value}</span>;
+											})} */}
 										</p>
 									</Card>
 								</Link>

@@ -49,7 +49,6 @@ const MovieEditPage = (props) => {
 				`https://limitless-sierra-67996.herokuapp.com/v1/movies/${movieId}`,
 				values
 			);
-			console.log(req);
 
 			if (req.status === 200) {
 				success();
@@ -114,7 +113,7 @@ const MovieEditPage = (props) => {
 				<InputNumber />
 			</Form.Item>
 			<Form.Item
-				initialValue={movie.categores}
+				initialValue={movie.categories}
 				label="장르"
 				name="categories"
 				rules={[{ required: true, message: "Please select the categories!" }]}

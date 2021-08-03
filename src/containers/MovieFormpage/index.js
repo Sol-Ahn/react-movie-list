@@ -1,12 +1,22 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Row, Col, Form, InputNumber, Checkbox, message } from "antd";
 import axios from "axios";
+import {
+	Row,
+	Col,
+	Form,
+	InputNumber,
+	Checkbox,
+	message,
+	Upload,
+	Button,
+} from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import { StyledForm, StyledInput } from "../../components/Form";
 import StyledButton from "../../components/Button";
 import { genres } from "../../constants";
 
-const MovieFormPage = (props) => {
+const MovieFormPage = () => {
 	let history = useHistory();
 
 	const success = () => {
@@ -35,6 +45,24 @@ const MovieFormPage = (props) => {
 		console.log("Failed:", errorInfo);
 	};
 
+	const props = {
+		name: "file",
+		action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+		headers: {
+			authorization: "authorization-text",
+		},
+		onChange(info) {
+			if (info.file.status !== "uploading") {
+				console.log(info.file, info.fileList);
+			}
+			if (info.file.status === "done") {
+				message.success(`${info.file.name} file uploaded successfully`);
+			} else if (info.file.status === "error") {
+				message.error(`${info.file.name} file upload failed.`);
+			}
+		},
+	};
+
 	return (
 		<StyledForm
 			name="movieForm"
@@ -57,12 +85,10 @@ const MovieFormPage = (props) => {
 			>
 				<StyledInput />
 			</Form.Item>
-			<Form.Item
-				label="이미지"
-				name="imageUrl"
-				rules={[{ required: false, message: "Please input the image-url!" }]}
-			>
-				<StyledInput />
+			<Form.Item label="이미지" name="image">
+				<Upload {...props}>
+					<Button icon={<UploadOutlined />}>Upload</Button>
+				</Upload>
 			</Form.Item>
 			<Form.Item
 				label="개봉 연도"

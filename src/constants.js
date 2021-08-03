@@ -1,4 +1,5 @@
 export const genres = [
+	{ label: "all", value: "전체" },
 	{ label: "horror", value: "공포" },
 	{ label: "drama", value: "드라마" },
 	{ label: "sf", value: "SF" },
